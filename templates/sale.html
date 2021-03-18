@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+<div class="main-content">
+
+    <div class="section__content section__content--p30">
+        <div class="container">
+            <table id="myTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>BRAND</th>
+                    <th>SIZE</th>
+                    <th>PRICE</th>
+                    <th>MRP</th>
+                    <th>SROCK</th>
+                    <th>SALE</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for i in data %}
+                {% if i.stock > 0 %}
+
+                <tr>
+
+                    <td>{{i.name}}</td>
+                    <td>{{i.brand}}</td>
+                    <td>{{i.size}}</td>
+                    <td>{{i.price}}</td>
+                    <td>{{i.mrp}}</td>
+                    <td>{{i.stock}}</td>
+
+                    <td><a href="{{i.get_addtocart_url}}">SALE</a></td>
+                    {% endif %}
+
+                </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="search">
+                <h2>sales</h2>
+                <div>
+                    <table border="3" align="centre">
+                        <tr>
+                            <th>NAME</th>
+                            <th>BRAND</th>
+                            <th>SIZE</th>
+                            <th>PRICE</th>
+                            <th>MRP</th>
+                            <th>QTY</th>
+                            <th>TOTAL</th>
+                            <th>REMOVE</th>
+
+                        </tr>
+                        {% for i in datas %}
+
+
+                        <tr>
+
+                            <td>{{i.item.name}}</td>
+                            <td>{{i.item.brand}}</td>
+                            <td>{{i.item.size}}</td>
+                            <td>{{i.item.price}}</td>
+                            <td>{{i.item.mrp}}</td>
+                            <td>{{i.quantity}}</td>
+                            <td>{{i.get_total_item_price}}</td>
+                            <td><a href="{{i.item.get_deletecartitem_url}}">DELETE</a></td>
+
+                        </tr>
+
+
+                        {% endfor %}
+                    </table>
+                    <div class="text-right">
+                        <a href="../place_order">
+                            <button class="au-btn au-btn-icon au-btn--blue">Place Order</button>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+{% block extrascript %}
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+
+
+
+
+
+
+
+</script>
+{% endblock %}

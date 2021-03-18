@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="main-content">
+
+    <div class="section__content section__content--p30">
+        <div class="container">
+            <table id="myTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>BRAND</th>
+                    <th>SIZE</th>
+                    <th>PRICE</th>
+                    <th>MRP</th>
+                    <th>SROCK</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for i in data %}
+
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.brand}}</td>
+                    <td>{{i.size}}</td>
+                    <td>{{i.price}}</td>
+                    <td>{{i.mrp}}</td>
+                    <td>{{i.stock}}</td>
+
+                </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extrascript %}
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+<style>
+.box{
+border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  padding-top: 50px;
+}
+.box input[type=text],[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.box input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.box input[type=submit]:hover {
+  background-color: #45a049;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+
+<div class="box ">
+    <div class="section__content section__content--p30">
+        <div>
+            <h2>ADD ITEMS</h2>
+            <form method="post" action="../add_item">
+                {% csrf_token %}
+                <label for="name">NAME:</label>
+                <select id="name" name="name">
+                    {% for i in data %}
+                    <option value="{{i.name}}">{{i.name}}</option>
+                    {% endfor %}
+                </select><br>
+                {{form.as_p}}
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
